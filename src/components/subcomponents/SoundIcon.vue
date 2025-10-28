@@ -5,15 +5,10 @@
                 soundEmojis: ['🔇', '🔈', '🔉', '🔊']
             }
         },
-
-        props :{
-            level : {
-                type : Number,
-                required : true,
-                validator : v => [0,1,2,3].includes(v)
-            }
-        }
         // TODO: add code to define a necessary prop
+        props: {
+            level: Number
+        }
     }
 </script>
 
