@@ -1,6 +1,7 @@
 <script>
     // Import BlogPost component
-    import blogPost from './subcomponents/BlogPost.vue'
+    import BlogPost from './subcomponents/BlogPost.vue';
+import blogPost from './subcomponents/BlogPost.vue'
 	import axios from 'axios'
     export default {
         data() {
@@ -34,6 +35,6 @@
 
 <template>
    <!-- TODO: make use of the 'blog-post' component to display the blog posts -->
-
+    <BlogPost v-for= " post in posts" :subject="post.subject" :entry="post.entry" :mood="post.mood" :key="post.id"></BlogPost>
 </template>
 
