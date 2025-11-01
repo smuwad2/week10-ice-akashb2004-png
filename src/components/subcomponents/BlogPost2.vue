@@ -1,15 +1,16 @@
 <script>
 export default {
-    // Add code if/as necessary
-    // Hint: Add properties subject, entry and mood
+    // Accept a `post` object with id, subject, entry, mood
     props: {
-        subject: String,
-        entry: String,
-        mood: String
+        post: {
+            type: Object,
+            required: true
+        }
     },
     computed: {
-        moodImage() {
-            return `/assets/${this.mood.toLowerCase()}.png`
+        imgLoc() {
+            const mood = (this.post.mood || '').toLowerCase();
+            return `/assets/${mood}.png`;
         }
     }
 }
@@ -17,13 +18,15 @@ export default {
 
 
 <template>
-    <!-- TODO: add your template code here. Use boostrap card -->
-    <div class="card mb-2" style="width: 18rem;">
-        <img :src="moodImage" class="card-img-top" :alt="mood">
+    <!-- Bootstrap card that displays the post and exposes a slot for actions -->
+    <div class="card" style="width: 18rem;">
+        <img :src="imgLoc" class="card-img-top" alt="">
         <div class="card-body">
-            <h5 class="card-title">{{ subject }}</h5>
-            <p class="card-text">{{ entry }}</p>
+            <h5 class="card-title">Blog {{ post.id }} Subject {{ post.subject }}</h5>
+            <p class="card-text">{{ post.entry }}</p>
+            <!-- Slot where parent can inject buttons (e.g. Delete) -->
+            <slot></slot>
         </div>
-        <slot></slot>
     </div>
+
 </template>
